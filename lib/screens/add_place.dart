@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/image_input.dart';
@@ -24,17 +25,26 @@ class _AddPlaceState extends State<AddPlace> {
           ),
         ),
         backgroundColor: Colors.white,
-        actionsIconTheme: const IconThemeData(color: Colors.black,),
+        actionsIconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
         elevation: 0,
         iconTheme: const IconThemeData(
           color: Colors.black,
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8.0,
+          horizontal: 10,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(
+                      height: 30,
+                    ),
+            SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -42,22 +52,32 @@ class _AddPlaceState extends State<AddPlace> {
                     TextField(
                       controller: titleController,
                       decoration: const InputDecoration(
-                        labelText: "Place Name",
+                        hintText: "Place Name",
+                        border: OutlineInputBorder(),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                     const ImageInput()
                   ],
                 ),
               ),
             ),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                elevation: 0, tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-            onPressed: () {},
-            child: const Text("Add Place"),
-          ),
-        ],
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton.icon(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                primary: Colors.black,
+                minimumSize: const Size.square(45)
+              ),
+              icon: const Icon(CupertinoIcons.add),
+              label: const Text("Add Place"),
+            ),
+          ],
+        ),
       ),
     );
   }
